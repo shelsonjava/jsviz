@@ -1,0 +1,19 @@
+#summary A listing of alternative projects.
+#labels Featured
+
+JSViz is best suited for projects that:
+   * Need dynamic layouts, based on connected graphs
+   * Demand Fast load time, even for first-time visitors
+   * Require Support for SVG or HTML elements
+   * Prefer to integrate with a JavaScript implementation.
+   * Have low graph scalability requirements (maximum 100-200 nodes/graph)
+
+If your project has different requirements, you may consider any of these alternative projects:
+
+|| *Project* || *License* || Description ||
+|| [http://www.processing.org/ Processing] || open || An environment for creating dynamic images and animations. Products can be displayed as a Java Applet ||
+|| [http://www.thinkmap.com/ ThinkMap] || commercial || Provides an SDK for generating dyanmic connected graph visualizations. ||
+|| [http://www.graphviz.org/ GraphViz] || open || An application for generating static connected graph visualizations. ||
+|| [http://www.touchgraph.com/ TouchGraph] || commercial || Another Applet based animated connected graph solution. ||
+|| [http://www.mxgraph.com/ MxGraph] || commercial / open || VML/SVG cross browser diagramming solution by the JGraph team, stronger on graph edition, weaker on layouts ||
+|| [http://wiki.visualmodeller.org/ JgraphpadCe] || open / commercial || Applet diagram editor using JGraph. The applet is preloaded in the background and communicates with the browser with liveconnect. Heavier solution than jsviz but stronger on diagram edition. ||
