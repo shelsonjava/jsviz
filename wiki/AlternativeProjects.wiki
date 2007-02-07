@@ -10,7 +10,7 @@ JSViz is best suited for projects that:
 
 If your project has different requirements, you may consider any of these alternative projects:
 
-|| *Project* || *License* || Description ||
+|| *Project* || *License* || *Description* ||
 || [http://www.processing.org/ Processing] || open || An environment for creating dynamic images and animations. Products can be displayed as a Java Applet ||
 || [http://www.thinkmap.com/ ThinkMap] || commercial || Provides an SDK for generating dyanmic connected graph visualizations. ||
 || [http://www.graphviz.org/ GraphViz] || open || An application for generating static connected graph visualizations. ||
