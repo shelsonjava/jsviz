@@ -1,0 +1,12 @@
+#summary About JSViz and project contributors
+#labels Featured
+
+===Authors and Contributors===
+
+JSViz is written by [http://kylescholz.com/ Kyle Scholz], and includes contributions from:
+   * Lorien Henry-Wilkins
+   * [http://ted.mielczarek.org/ Ted Mielczarek]
+
+===Contribute===
+
+We're more than happy to work with the JSViz community and welcome contributions.
