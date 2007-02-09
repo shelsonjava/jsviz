@@ -1,7 +1,7 @@
 #labels Featured
 JSViz is distributed under a [http://creativecommons.org/licenses/by/2.5/ Creative Commons Attribution License]. Under the terms of this license, all source and derivative works must include the following attribution:
 
-<pre>
+{{{
 This work is licensed under the Creative Commons Attribution 2.5 License.
 
 To view a copy of this license, visit:
@@ -17,4 +17,4 @@ above and the following attribution:
 
 Author: Kyle Scholz      http://kylescholz.com/
 Copyright: 2006-2007
-</pre>
+}}}
