@@ -1,0 +1,5 @@
+#summary A listing of projects related to JSViz
+#labels Featured
+
+|| *Project* || *License* || *Description* ||
+|| [http://code.google.com/p/gwt-jsviz/ GWT Wrapper for JSViz] || open || A project by Alistair Rutherford that enables use of JSViz from the Google Web Toolkit ||
