@@ -3,4 +3,4 @@
 
 || *Project* || *License* || *Description* ||
 || [http://code.google.com/p/gwt-jsviz/ GWT-JSViz] || open || A project by Alistair Rutherford that enables use of JSViz from the Google Web Toolkit ||
-|| [http://code.google.com/p/svg2vml/ svg2vml] || open || Enables a subset of SVG features to work in Internet Explorer through VML ||
+|| [http://code.google.com/p/svg2vml/ SVG2VML ] || open || Provides a subset of SVG functionality to Internet Explorer through VML ||
