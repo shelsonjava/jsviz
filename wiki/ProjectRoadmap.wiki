@@ -19,6 +19,8 @@ This release introduces a conventional tree graph model.
 
 ===0.3.3: Friendlier User Facing APIs===
 
+_Current Release_
+
 This release responds to requests for less complex user facing APIs. Existing APIs will remain intact for advanced users. The release also includes some project organization.
 
    * Introduce new "layout" classes to enable easier development for simple applications
