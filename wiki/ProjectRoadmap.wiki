@@ -1,29 +1,13 @@
 #summary The JSViz Project Roadmap.
 #labels Featured
 
-===0.3.1: Improving Force Directed Graph Performance===
+===0.3.5: Introducing Cross-Browser Vector Graphics for JSViz===
 
-This release responds to requests for improved Force Directed Graph performance.
+This release introduces a lightweight, common vector graphics library for browsers supporting SVG and VML, based on a subset of SVG functionality.
 
-   * New physical model for Force Directed Graphs
-   * New entropy throttle
-   * New API with improved support for building graphs from source data
+   * Support relative edge lengths in geometric models
 
-===0.3.2: Updating ~~Tree~~ _Snowflake_ Graph Model===
-
-This release updates the "Tree Graph" from prior releases to the 0.3 API. It also renames "Tree Graph" appropriately. A new model for tree graphs, useful for applications like org charts, will be part of a future release.
-
-   * Update Snowflake model to new API
-
-===0.3.3: Friendlier User Facing APIs===
-
-This release responds to requests for less complex user facing APIs. Existing APIs will remain intact for advanced users. The release also includes some project organization.
-
-   * Introduce new "layout" classes to enable easier development for simple applications
-   * Enable basic clearing and recentering functionality
-   * Improve model for loading data from external resources
-
-===0.3.4: Introducing Real Tree Graph Model===
+===0.3.4: Introducing a Real Tree Graph Model===
 
 This release introduces a conventional tree graph model.
 
@@ -33,8 +17,24 @@ This release introduces a conventional tree graph model.
    * Configurable entropy throttles
    * Support Edge labels
 
-===0.3.5: Introducing Cross-Browser Vector Graphics for JSViz===
+===0.3.3: Friendlier User Facing APIs===
 
-This release introduces a lightweight, common vector graphics library for browsers supporting SVG and VML, based on a subset of SVG functionality.
+This release responds to requests for less complex user facing APIs. Existing APIs will remain intact for advanced users. The release also includes some project organization.
 
-   * Support relative edge lengths in geometric models
+   * Introduce new "layout" classes to enable easier development for simple applications
+   * Enable basic clearing and recentering functionality
+   * Improve model for loading data from external resources
+
+===0.3.2: Updating Snowflake Graph Model===
+
+This release updates the "Tree Graph" from prior releases to the 0.3 API. It also renames "Tree Graph" appropriately. A new model for tree graphs, useful for applications like org charts, will be part of a future release.
+
+   * Update Snowflake model to new API
+
+===0.3.1: Improving Force Directed Graph Performance===
+
+This release responds to requests for improved Force Directed Graph performance.
+
+   * New physical model for Force Directed Graphs
+   * New entropy throttle
+   * New API with improved support for building graphs from source data
