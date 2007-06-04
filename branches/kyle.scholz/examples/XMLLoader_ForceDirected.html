@@ -79,7 +79,7 @@
 						}
 					},
 					view: function( dataNode, modelNode ) {
-						if(renderNodes=="canvas") {
+						if(renderNodes=="canvas"  && layout.view.supportCanvas) {
 							return( function(particle) {
 								this.node_twod.strokeStyle = dataNode.color;
 								this.node_twod.fillStyle = dataNode.color;
@@ -92,7 +92,7 @@
 								this.node_twod.stroke();
 								this.node_twod.fill();
 							} );
-						} else if(renderNodes=="vector") {
+						} else if(renderNodes=="vector" && layout.view.supportVector) {
 							var nodeElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 							nodeElement.setAttribute('stroke', '#888888');
 							nodeElement.setAttribute('stroke-width', '.25px');

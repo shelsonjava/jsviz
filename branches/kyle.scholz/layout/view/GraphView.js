@@ -109,8 +109,8 @@ var GraphView = function(container, properties) {
  * 
  */
 GraphView.prototype.isCanvasSupported = function() {
-	var support = document.createElement("canvas") ? true : false;
-	return support;
+	var canvas = document.createElement("canvas");
+	return canvas && canvas.getContext;
 };
 
 /*
@@ -156,17 +156,17 @@ GraphView.prototype.setSize = function( frameLeft, frameTop, frameWidth, frameHe
 		this.skewY = 1;
 	}
 
-	if (this.properties.useCanvas) {
+	if (this.properties.useCanvas && this.supportCanvas) {
 		if(this.properties.edgeRenderer=="canvas") {
 			this.edge_canvas.width=frameWidth;
 			this.edge_canvas.height=frameHeight;	
 		}
-	
+
 		this.node_canvas.width=frameWidth;
-		this.node_canvas.height=frameHeight;
+		this.node_canvas.height=frameHeight;	
 	}
 
-	if (this.properties.useVector) {
+	if (this.properties.useVector && this.supportVector) {
 	   	this.svg.setAttribute("width", this.frameWidth);
 	   	this.svg.setAttribute("height", this.frameHeight);
 		var dimString = parseInt(-1*this.frameWidth/2) + " " + parseInt(-1*this.frameHeight/2)
@@ -269,7 +269,7 @@ GraphView.prototype.addCanvasEdge = function( particleA, particleB, edgeProperti
 			target: particleB,
 			stroke: edgeProperties.stroke,
 			'stroke-width': edgeProperties['stroke-width'],
-			'stroke-dasharray': edgeProperties['stroke-dasharray'],
+			'stroke-dasharray': edgeProperties['stroke-dasharray']
 		}
 	}
 };
