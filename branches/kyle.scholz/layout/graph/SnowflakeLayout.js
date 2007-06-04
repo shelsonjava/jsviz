@@ -23,21 +23,13 @@
  * 
  * @param {DOMElement} container
  */
-var SnowflakeLayout = function( container, useVectorGraphics ) {
+var SnowflakeLayout = function( container, viewProperties ) {
 	
 	this.container = container;
 	this.containerLeft=0; this.containerTop=0;
 	this.containerWidth=0; this.containerHeight=0;
 
-	this.svg = useVectorGraphics && document.implementation.hasFeature("org.w3c.dom.svg", '1.1') ? true : false; 
-
-	// Render model with SVG if it's supported.
-	if ( this.svg ) {
-		this.view = new SVGGraphView( container, 1 );
-	// Otherwise, use HTML.
-	} else {
-		this.view = new HTMLGraphView( container, 1 );
-	}
+	this.view = new GraphView( container, viewProperties );
 
 	// Create the model that we'll use to represent the nodes and relationships 
 	// in our graph.
@@ -53,12 +45,6 @@ var SnowflakeLayout = function( container, useVectorGraphics ) {
 	this.dataGraph = new DataGraph();
 	this.dataGraph.subscribe( this );
 				
-	// if this is IE, turn on caching of javascript-loaded images explicitly
-	if ( document.all ) {
-		document.createStyleSheet().addRule('html', 
-			'filter:expression(document.execCommand("BackgroundImageCache", false, true))' );		
-	}
-
 	// attach an onresize event
 	var resizeEvent = new EventHandler( this, this.setSize );
 	if (window.addEventListener) {
