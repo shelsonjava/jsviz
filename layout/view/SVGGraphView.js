@@ -21,7 +21,8 @@
  * @author Kyle Scholz
  * @author Ted Mielczarek
  * 
- * @version 0.3.3
+ * @version 0.3.4
+ * @deprecated Use GraphView instead.
  * 
  * Represents a view on a GraphModel. This implementation supports SVG
  * elements as well as HTML elements.
@@ -104,6 +105,14 @@ SVGGraphView.prototype.setSize = function( frameLeft, frameTop, frameWidth, fram
 }
 
 /*
+ * Called at the begnning of each drawing loop. Used by views that need to clear
+ * or reset at the begninning of each iteration.
+ */
+SVGGraphView.prototype.set = function() {
+	
+}
+
+/*
  * Add a node to the view. 
  *
  * @param {Particle} particle
@@ -119,6 +128,7 @@ SVGGraphView.prototype.addNode = function( particle, domElement,
 	centerOffsetX, centerOffsetY ) {
 
 	// With an SVG View Element
+//TODO: is this the best we can do for detecting SVG types??
 	if ( domElement.localName=="circle" || domElement.localName == "text" ) {
 		this.ng.appendChild(domElement);
 		centerOffsetX = 0;
@@ -142,6 +152,11 @@ SVGGraphView.prototype.addNode = function( particle, domElement,
 		centerY: centerOffsetY			
 	}
 
+	if ( domElement.localName=="circle" || domElement.localName == "text" ) {
+		this.nodes[particle.id]['width'] = domElement.getAttribute("width");
+		this.nodes[particle.id]['height'] = domElement.getAttribute("height");
+	}
+	
 	this.drawNode(particle);
 	return domElement;
 }
@@ -199,11 +214,21 @@ SVGGraphView.prototype.addEdge = function( particleA, particleB, edgeProperties 
 		edge.id = 'edge'+particleA.id+':'+particleB.id;
 		this.eg.appendChild(edge);
 
+		if( edgeProperties.label ) {
+			edgeProperties.label.style.position = "absolute";
+			this.container.appendChild(edgeProperties.label);
+			edgeProperties.label.style.zIndex=10;
+		}
+
 		this['edges'][particleA.id][particleB.id] = {
 			source: particleA,
 			target: particleB,
-			domEdge: edge
+			domEdge: edge,
+			label: edgeProperties.label,
+			labelCenterX: edgeProperties.label ? edgeProperties.label.offsetWidth/2 : 0,
+			labelCenterY: edgeProperties.label ? edgeProperties.label.offsetHeight/2 : 0
 		}
+		
 		return edge;
 	} else {
 		return this['edges'][particleA.id][particleB.id].domEdge;
@@ -234,8 +259,8 @@ SVGGraphView.prototype.drawNode = function( particle ) {
 			domNode.setAttribute('transform','translate(' + particle.positionX*this.skewX + ' ' + particle.positionY*this.skewY + ')');
 		} else if ( domNode.localName == 'text' ) {
 			domNode.setAttribute('transform','translate(' + (particle.positionX*this.skewX - 
-				domNode.getAttribute("width")) + ' ' + (particle.positionY*this.skewY - 
-				domNode.getAttribute("height")) + ')');
+				domNodeProps.width) + ' ' + (particle.positionY*this.skewY - 
+				domNodeProps.height) + ')');
 		} else {
 			domNode.style.left = (particle.positionX*this.skewX) - 
 				domNodeProps.centerX + this.centerX + 'px';
@@ -250,13 +275,6 @@ SVGGraphView.prototype.drawNode = function( particle ) {
 	}
 }
 
-var Distance = function( x1, y1, x2, y2 ) {;
-	this['dx'] = x1 - x2;
-	this['dy'] = y1 - y2;
-	this['d2'] = (this['dx']*this['dx']+this['dy']*this['dy']);
-	this['d'] = Math.sqrt(this['d2']);
-}
-
 /*
  * Draw an edge at it's current position.
  * 
@@ -269,6 +287,13 @@ SVGGraphView.prototype.drawEdge = function ( particleA, particleB ) {
 	edge.setAttribute('points',
 		(particleA.positionX)*this.skewX + "," + (particleA.positionY)*this.skewY + "," + 
 		(particleB.positionX)*this.skewX + "," + (particleB.positionY)*this.skewY);
+
+	// TODO: presumes that label is HTML
+	var label = this.edges[particleA.id][particleB.id]['label'];
+	if( label ) {
+		label.style.left = ((particleA.positionX+particleB.positionX)/2)*this.skewX - this.edges[particleA.id][particleB.id].labelCenterX + this.centerX + 'px';
+		label.style.top =  ((particleA.positionY+particleB.positionY)/2)*this.skewY - this.edges[particleA.id][particleB.id].labelCenterY + this.centerY + 'px';
+	}
 }
 	
 /*

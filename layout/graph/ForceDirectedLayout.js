@@ -23,21 +23,13 @@
  * 
  * @param {DOMElement} container
  */
-var ForceDirectedLayout = function( container, useVectorGraphics ) {
+var ForceDirectedLayout = function( container, viewProperties ) {
 	
 	this.container = container;
 	this.containerLeft=0; this.containerTop=0;
 	this.containerWidth=0; this.containerHeight=0;
 
-	this.svg = useVectorGraphics && document.implementation.hasFeature("org.w3c.dom.svg", '1.1') ? true : false; 
-
-	// Render model with SVG if it's supported.
-	if ( this.svg ) {
-		this.view = new SVGGraphView( container, 1 );
-	// Otherwise, use HTML.
-	} else {
-		this.view = new HTMLGraphView( container, 1 );
-	}
+	this.view = new GraphView( container, viewProperties );
 
 	// Create the model that we'll use to represent the nodes and relationships 
 	// in our graph.
@@ -404,6 +396,7 @@ ForceDirectedLayout.prototype.makeNodeModel = function( dataNode ) {
  */
 ForceDirectedLayout.prototype.defaultNodeView = function( dataNode, modelNode ) {
 	var nodeElement;
+// TODO:
 	if ( this.svg ) {
 		nodeElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 		nodeElement.setAttribute('stroke', '#444444');

@@ -19,7 +19,8 @@
  * 
  * @author Kyle Scholz
  * 
- * @version 0.3.3
+ * @version 0.3.4
+ * @deprecated Use GraphView instead.
  * 
  * Represents a view on a GraphModel. This implementation supports HTML elements.
  * 
@@ -71,6 +72,14 @@ HTMLGraphView.prototype.setSize = function( frameLeft, frameTop, frameWidth, fra
 		this.skewX = 1;
 		this.skewY = 1;
 	}
+}
+
+/*
+ * Called at the begnning of each drawing loop. Used by views that need to clear
+ * or reset at the begninning of each iteration.
+ */
+HTMLGraphView.prototype.set = function() {
+	
 }
 
 /*

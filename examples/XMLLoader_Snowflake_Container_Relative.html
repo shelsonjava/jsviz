@@ -24,8 +24,7 @@
 		<!-- JSViz Libraries -->
 		<script language="JavaScript" src="../geometry/SnowflakeGraphModel.js"></script>
 		<script language="JavaScript" src="../layout/graph/SnowflakeLayout.js"></script>
-		<script language="JavaScript" src="../layout/view/HTMLGraphView.js"></script>
-		<script language="JavaScript" src="../layout/view/SVGGraphView.js"></script>
+		<script language="JavaScript" src="../layout/view/GraphView.js"></script>
 
 		<script language="JavaScript" src="../util/Timer.js"></script>
 		<script language="JavaScript" src="../util/EventHandler.js"></script>
@@ -46,7 +45,7 @@
 				 * position (via element.offsetWidth, element.offsetHeight,
 				 * element.offsetTop, element.offsetLeft).
 				 */
-				var layout = new SnowflakeLayout( document.getElementById("graph"), true );
+				var layout = new SnowflakeLayout( document.getElementById("graph") );
 				layout.view.skewBase=300;
 				layout.setSize();
 
@@ -108,7 +107,7 @@
 				 */
 
 					view: function( dataNode, modelNode ) {
-						if ( layout.svg ) {
+						if ( layout.view.properties.useVector ) {
 							var nodeElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 							nodeElement.setAttribute('stroke', '#888888');
 							nodeElement.setAttribute('stroke-width', '.25px');
@@ -139,19 +138,12 @@
 				 * @return Object
 				 */ 
 				layout.viewEdgeBuilder = function( dataNodeSrc, dataNodeDest ) {
-					if ( this.svg ) {
-						return {
-							'stroke': dataNodeSrc.color,
-							'stroke-width': '2px',
-							'stroke-dasharray': '2,4'
-						}
-					} else {
-						return {
-							'pixelColor': dataNodeSrc.color,
-							'pixelWidth': '2px',
-							'pixelHeight': '2px',
-							'pixels': 8
-						}
+					return {
+						skew: true,
+						'html_pixels': 5,
+						'stroke': dataNodeSrc.color,
+						'stroke-width': '2px',
+						'stroke-dasharray': '2,4'
 					}
 				}
 
