@@ -1,17 +1,11 @@
 #summary The JSViz Project Roadmap.
 #labels Featured
 
-===0.3.5: Introducing Cross-Browser Vector Graphics for JSViz===
+===0.3.4: Introducing Cross-Browser Vector Graphics for JSViz===
 
 This release introduces a lightweight, common vector graphics library for browsers supporting SVG and VML, based on a subset of SVG functionality.
 
    * Support relative edge lengths in geometric models
-
-===0.3.4: Introducing a Real Tree Graph Model===
-
-This release introduces a conventional tree graph model.
-
-   * Introduce New Tree Model
    * Introduce JSViz namespace
    * Support iterative node handling
    * Configurable entropy throttles
