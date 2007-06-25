@@ -96,6 +96,8 @@ ParticleModel.prototype = {
 	 */
 	draw: function( force ) {
 		var view = this.view;
+		view.set();
+		
 		var particles = this.particles;
 		var moved = 0;
 		
@@ -121,11 +123,11 @@ ParticleModel.prototype = {
 
 			var newDrawPositionX = Math.round(particle.positionX*2)/2;
 			var newDrawPositionY = Math.round(particle.positionY*2)/2;
-			// only redraw if particle position has changed by 2px
-			if ( newDrawPositionX != particle.lastDrawPositionX || newDrawPositionY != particle.lastDrawPositionY || force ) {
-				view.drawNode( particle );					
-				moved++;
-			}
+			// for DOM-based views, only redraw if particle position has changed by 2px
+			var redraw = (force || newDrawPositionX != particle.lastDrawPositionX || newDrawPositionY != particle.lastDrawPositionY) ? true : false;
+			view.drawNode( particle, redraw );
+			if (redraw) moved++;
+
 			particle.lastDrawPositionX = newDrawPositionX;
 			particle.lastDrawPositionY = newDrawPositionY;
 		}

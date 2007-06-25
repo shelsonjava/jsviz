@@ -199,6 +199,8 @@ SnowflakeGraphModel.prototype.stop = function() {
  */
 SnowflakeGraphModel.prototype.update = function() {
 	var m = 0;
+// TODO
+this.view.set();
 	for( var i=0; i<this.updateQueue.length; i++ ) {
 		m = this.setNodePosition( this.updateQueue[i] );	
 	}
@@ -216,6 +218,7 @@ SnowflakeGraphModel.prototype.setNodePosition = function( node, force, i ) {
 		var dt = (node.positionT - node.targetT);
 		var dr = (node.positionR - node.targetR);
 
+		var redraw = false;
 		if ( force || ((Math.abs(dt)>1 || Math.abs(dr)>1) && !(this.selected==node.id)) ) {
 			node.positionT -= (dt / this['fluidity']);
 			node.positionR -= (dr / this['fluidity']);
@@ -232,24 +235,27 @@ SnowflakeGraphModel.prototype.setNodePosition = function( node, force, i ) {
 		    node.positionX = node.parent.positionX - 
 				(Math.sin(node.positionT*(Math.PI/180)) * 
 				(node.positionR+stagger));
-
-			this.view.drawNode( node );
 			m = 1;
+			redraw = true;
 		} else if ( this.selected == node.id ) {
-			this.view.drawNode( node );				
+			redraw = true;
 		}
+		this.view.drawNode( node, redraw );
 	} else {
 		// are we migrating a root node?
 		// Get new coordinate values for this node
 		var dx = (node.positionX - node.targetX);
 		var dy = (node.positionY - node.targetY);
 
+		var redraw = false;
 		if ( force || (Math.abs(dx)>1 || Math.abs(dy)>1) ) {
+			redraw=true;
 			node.positionX -= (dx / this['fluidity']);
 			node.positionY -= (dy / this['fluidity']);			
 			node.updateChildren();
 			this.view.drawNode( node );
 		}
+		this.view.drawNode( node, redraw );
 	}
 
 	for ( var i=0, l=node.children.length; i<l; i++ ) {
