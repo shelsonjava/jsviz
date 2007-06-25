@@ -454,7 +454,7 @@ GraphView.prototype.drawCanvasEdge = function ( particleA, particleB ) {
 	var dy = particleA.positionY-particleB.positionY; 
 	var d = Math.sqrt(dx*dx + dy*dy);
 	
-	if(dasharray) {
+	if(false && dasharray) {
 		var c=0;
 		var cx = particleA.positionX;
 		var cy = particleA.positionY;
@@ -476,7 +476,7 @@ GraphView.prototype.drawCanvasEdge = function ( particleA, particleB ) {
 					);
 				}
 			}
-		}		
+		}	
 	} else {
 		this.edge_twod.lineTo(
 			(particleB.positionX*this.skewX) + this.centerX,
